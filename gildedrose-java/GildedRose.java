@@ -11,7 +11,7 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             if (!isAgedBrie(i) && !isBackstagePass(i)) {
                 if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                    if (!isSulfuras(i)) {
                         items[i].quality = items[i].quality - 1;
                     }
                 }
@@ -35,7 +35,7 @@ class GildedRose {
                 }
             }
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (!isSulfuras(i)) {
                 items[i].sellIn = items[i].sellIn - 1;
             }
 
@@ -43,7 +43,7 @@ class GildedRose {
                 if (!isAgedBrie(i)) {
                     if (!isBackstagePass(i)) {
                         if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                            if (!isSulfuras(i)) {
                                 items[i].quality = items[i].quality - 1;
                             }
                         }
@@ -59,11 +59,9 @@ class GildedRose {
         }
     }
 
-    private boolean isBackstagePass(int i) {
-        return items[i].name.equals("Backstage passes to a TAFKAL80ETC concert");
-    }
+    private boolean isSulfuras(int i) {return items[i].name.equals("Sulfuras, Hand of Ragnaros");}
 
-    private boolean isAgedBrie(int i) {
-        return items[i].name.equals("Aged Brie");
-    }
+    private boolean isBackstagePass(int i) {return items[i].name.equals("Backstage passes to a TAFKAL80ETC concert");}
+
+    private boolean isAgedBrie(int i) {return items[i].name.equals("Aged Brie");}
 }
