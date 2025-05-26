@@ -12,7 +12,7 @@ class GildedRose {
             if (!isAgedBrie(i) && !isBackstagePass(i)) {
                 if (items[i].quality > 0) {
                     if (!isSulfuras(i)) {
-                        items[i].quality = items[i].quality - 1;
+                        items[i].quality--;
                     }
                 }
             } else {
@@ -30,7 +30,7 @@ class GildedRose {
             }
 
             if (!isSulfuras(i)) {
-                items[i].sellIn = items[i].sellIn - 1;
+                items[i].sellIn--;
             }
 
             if (items[i].sellIn < 0) {
@@ -38,11 +38,11 @@ class GildedRose {
                     if (!isBackstagePass(i)) {
                         if (items[i].quality > 0) {
                             if (!isSulfuras(i)) {
-                                items[i].quality = items[i].quality - 1;
+                                items[i].quality--;
                             }
                         }
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        items[i].quality = 0;
                     }
                 } else {
                     increaseQualityIfPossible(items[i]);
