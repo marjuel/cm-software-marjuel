@@ -9,50 +9,57 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (!isAgedBrie(item) && !isBackstagePass(item)) {
-                if (item.quality > 0) {
-                    if (!isSulfuras(item)) {
-                        item.quality--;
-                    }
-                }
-            } else {
-                increaseQualityIfPossible(item);
+            if (isSulfuras(item))
+                continue;
 
-                if (isBackstagePass(item)) {
-                    if (item.sellIn < 11) {
-                        increaseQualityIfPossible(item);
-                    }
-
-                    if (item.sellIn < 6) {
-                        increaseQualityIfPossible(item);
-                    }
-                }
-            }
-
-            if (!isSulfuras(item)) {
-                item.sellIn--;
-            }
-
-            if (item.sellIn < 0) {
-                if (!isAgedBrie(item)) {
-                    if (!isBackstagePass(item)) {
-                        if (item.quality > 0) {
-                            if (!isSulfuras(item)) {
-                                item.quality--;
-                            }
-                        }
-                    } else {
-                        item.quality = 0;
-                    }
-                } else {
-                    increaseQualityIfPossible(item);
-                }
-            }
+            if (isAgedBrie(item))
+                updateAgedBrie(item);
+            else if (isBackstagePass(item))
+                updateBackstagePass(item);
+            else
+                updateRegularItem(item);
         }
-
     }
 
-    private void increaseQualityIfPossible(Item item) {
+
+    private void updateAgedBrie(Item item) {
+        increaseQuality(item);
+
+        item.sellIn--;
+
+        if (item.sellIn < 0)
+            increaseQuality(item);
+    }
+
+    private void updateBackstagePass(Item item) {
+        increaseQuality(item);
+        if (item.sellIn < 11)
+            increaseQuality(item);
+
+        if (item.sellIn < 6)
+            increaseQuality(item);
+
+        item.sellIn--;
+
+        if (item.sellIn < 0)
+            item.quality = 0;
+    }
+
+    private void updateRegularItem(Item item) {
+        decreaseQuality(item);
+
+        item.sellIn--;
+
+        if (item.sellIn < 0)
+            decreaseQuality(item);
+    }
+
+    private void decreaseQuality(Item item) {
+        if (item.quality > 0)
+            item.quality--;
+    }
+
+    private void increaseQuality(Item item) {
         if (item.quality < 50)
             item.quality++;
     }
