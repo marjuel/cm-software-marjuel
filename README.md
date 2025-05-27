@@ -1,3 +1,4 @@
+# Semana 3
 # GildedRose en Java
 En este archivo se explican los cambios realizados en el proyecto GildedRose
 
@@ -62,3 +63,6 @@ El siguiente paso sería desacoplar completamente la lógica de cada tipo de ite
 Esto implicaría crear una interfaz **UpdateStrategy** y una clase concreta para cada tipo de item: **AgedBrieStrategy**, **BackstagePassStrategy**, **RegularItemStrategy**, etc.
 
 Así en vez de **if** o **switch** de nombres, cada item tendría asociada una estrategia para actualizarse.
+
+# Semana 2
+cm-software-marjuel - Tarea para el curso PSWE-03 de la Maestría CENFOTEC
